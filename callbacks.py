@@ -1,6 +1,9 @@
 '''
 Created on 7 Apr 2017
 @author: jkiesele
+Original: https://github.com/benjaminkreis/keras-conv1d/blob/master/train/callbacks.py
+
+Changed logs.interitems() to logs.items()
 '''
 from __future__ import print_function
 
@@ -22,7 +25,7 @@ class newline_callbacks_begin(Callback):
     def on_epoch_end(self,epoch, epoch_logs={}):
         import os
         lossfile=os.path.join( self.outputDir, 'losses.log')
-        print('\n***callbacks***\nsaving losses to '+lossfile)
+        print('***callbacks***\nsaving losses to '+lossfile)
         self.loss.append(epoch_logs.get('loss'))
         self.val_loss.append(epoch_logs.get('val_loss'))
         f = open(lossfile, 'w')
@@ -42,7 +45,7 @@ class newline_callbacks_begin(Callback):
         
 class newline_callbacks_end(Callback):
     def on_epoch_end(self,epoch, epoch_logs={}):
-        print('\n***callbacks end***\n')
+        print('***callbacks end***')
         
         
 class Losstimer(Callback):
